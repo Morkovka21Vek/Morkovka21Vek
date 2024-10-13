@@ -12,13 +12,14 @@
 <img src="https://github.com/Morkovka21Vek/Morkovka21Vek/blob/main/russia-flag.gif?raw=true" height="16"/>
 <br>Мой сайт: <a href="https://morkovka21vek.github.io/ru">Morkovka21Vek.github.io</a></h4>
 
-![Typing SVG](https://readme-typing-svg.herokuapp.com?color=%2336BCF7&lines=I+try+to+do+projects)
-![Typing SVG](https://readme-typing-svg.herokuapp.com?color=%2336BCF7&lines=Стараюсь+делать+проекты)  
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Morkovka21Vek&layout=compact)
+<!-- [![trophy](https://github-profile-trophy.vercel.app/?username=Morkovka21Vek)](https://github.com/Morkovka21Vek) -->
+<h1 align="center">
+  <img alt="trophy" src="https://github-profile-trophy.vercel.app/?username=Morkovka21Vek">
+</h1>
 
-[![trophy](https://github-profile-trophy.vercel.app/?username=Morkovka21Vek)](https://github.com/Morkovka21Vek)
-
-![GitHub Streak](https://github-readme-streak-stats.herokuapp.com/?user=Morkovka21Vek)
-![Stats](https://github-readme-stats.vercel.app/api?username=Morkovka21Vek)
-
-[![Ashutosh's github activity graph](https://github-readme-activity-graph.vercel.app/graph?username=Morkovka21Vek&theme=github-compact)](https://github.com/ashutosh00710/github-readme-activity-graph)
+<h1 align="center">
+  <a href="https://github.com/ashutosh00710/github-readme-activity-graph">
+    <img alt="Ashutosh's github activity graph" src="https://github-readme-activity-graph.vercel.app/graph?username=Morkovka21Vek&theme=github-compact">
+  <!-- [![Ashutosh's github activity graph](https://github-readme-activity-graph.vercel.app/graph?username=Morkovka21Vek&theme=github-compact)](https://github.com/ashutosh00710/github-readme-activity-graph) -->
+  </a>
+</h1>
