@@ -181,9 +181,9 @@ echo -e -n "\033[00m"
 
 #becup settings
 export BACKUPS_DIR="$HOME/backups_creator/Morkovka21Vek/linux_files/"
-cd $BACKUPS_DIR
 cp "$HOME/.bashrc" "$BACKUPS_DIR/.bashrc"
 cp "$HOME/.vimrc" "$BACKUPS_DIR/.vimrc"
-git diff --name-only HEAD $BACKUPS_DIR 
-ls -a
+#git --git-dir=$BACKUPS_DIR/../.git --work-tree=$BACKUPS_DIR/../ status
+git --git-dir=$BACKUPS_DIR/../.git --work-tree=$BACKUPS_DIR/../ diff --name-only HEAD $BACKUPS_DIR
+#git diff --name-only HEAD $BACKUPS_DIR 
 #end bucup settings
