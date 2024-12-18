@@ -174,16 +174,18 @@ funnyPhrases() {
 }
 
 #echo -e '\e]8;;http://example.com\e\\This is a link\e]8;;\e\\'
-echo -e "\033[1;32mЗдравструйте, $USER!\nНапоминаю, если вы забыли:\nСегодня $(date)\nНикнейм: Morkovka21Vek\nБыстрые ссылки: \e]8;;https://morkovka21vek.github.io\e\\Сайт\e]8;;\e\\ \e]8;;https://github.com/Morkovka21Vek\e\\github\e]8;;\e\\ \n\033[0;32m"
+echo -e "\033[1;32mЗдравструйте, $USER!\nСегодня $(date)\n\033[0;32m"
 funnyPhrases "Morkovka21Vek"
 echo -e -n "\033[00m"
 
 
 #becup settings
 export BACKUPS_DIR="$HOME/backups_creator/Morkovka21Vek/linux_files/"
-cp "$HOME/.bashrc" "$BACKUPS_DIR/.bashrc"
-cp "$HOME/.vimrc" "$BACKUPS_DIR/.vimrc"
+cat "$HOME/.bashrc" > "$BACKUPS_DIR/.bashrc"
+cat "$HOME/.vimrc"  > "$BACKUPS_DIR/.vimrc"
 #git --git-dir=$BACKUPS_DIR/../.git --work-tree=$BACKUPS_DIR/../ status
 git --git-dir=$BACKUPS_DIR/../.git --work-tree=$BACKUPS_DIR/../ diff --name-only HEAD $BACKUPS_DIR
 #git diff --name-only HEAD $BACKUPS_DIR 
 #end bucup settings
+
+alias buffer_help="echo \"xclip -sel c < <filename>\""
