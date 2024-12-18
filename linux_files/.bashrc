@@ -132,10 +132,11 @@ mkcdir ()
 cl ()
 {
   clear
-  echo -e "\033[0;36mВывод очищен!\033[0;32m"
+  #echo -e "\033[0;36mВывод очищен!\033[0;32m"
 
+  echo -e -n "\033[0;32m"
   funnyPhrases "Morkovka21Vek"
-  echo -e -n "\033[00m"
+  echo -e "\033[00m"
 }
 gcomp ()
 {
@@ -147,36 +148,36 @@ funnyPhrases() {
   dayOfWeek=$(date +%u)
 
   if [ $hoursTime -le 4 ]; then
-    echo "Чего не спим, $1?"
+    echo -n "Чего не спим, $1?"
   elif [ $hoursTime -le 6 ]; then
-    echo "Ты вообще спишь, $1?" 
+    echo -n "Ты вообще спишь, $1?" 
   elif [ $hoursTime -le 7 ]; then
-    echo "Проснись и пой, $1?" 
+    echo -n "Проснись и пой, $1?" 
   elif [ $hoursTime -le 9 ]; then
-    echo "Как завтрак, $1?" 
+    echo -n "Как завтрак, $1?" 
   elif [ $hoursTime -le 11 -a $dayOfWeek -eq 7 ]; then
-    echo "На занятиях, $1?" 
+    echo -n "На занятиях, $1?" 
   elif [ $hoursTime -le 11 ]; then
-    echo "Чё делаешь, $1?" 
+    echo -n "Чё делаешь, $1?" 
   elif [ $hoursTime -le 13 ]; then
-    echo "Hello World ($1)!" 
+    echo -n "Hello World ($1)!" 
   elif [ $hoursTime -le 15 ]; then
-    echo "Пообедал, $1?" 
+    echo -n "Пообедал, $1?" 
   elif [ $hoursTime -le 18 ]; then
-    echo "Как жизнь, $1?" 
+    echo -n "Как жизнь, $1?" 
   elif [ $hoursTime -le 20 ]; then
-    echo "А вот и ужин!" 
+    echo -n "А вот и ужин!" 
   elif [ $hoursTime -le 22 ]; then
-    echo "Закругляйся уже, $1!" 
+    echo -n "Закругляйся уже, $1!" 
   elif [ $hoursTime -le 23 ]; then
-    echo "Это последнее предупреждение, $1!" 
+    echo -n "Это последнее предупреждение, $1!" 
   fi
 }
 
 #echo -e '\e]8;;http://example.com\e\\This is a link\e]8;;\e\\'
 echo -e "\033[1;32mЗдравструйте, $USER!\nСегодня $(date)\n\033[0;32m"
 funnyPhrases "Morkovka21Vek"
-echo -e -n "\033[00m"
+echo -e "\033[00m"
 
 
 #becup settings
