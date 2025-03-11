@@ -193,7 +193,10 @@ cl ()
   echo -e "\033[00m"
 }
 
-export HISTIGNORE="cd:ls:cl:clear"
+export HISTIGNORE="shutdown*:cd *:cd:ls *:ls:cl:clear:exit:ps:history*"
+export HISTCONTROL=ignoreboth:erasedups
+export PROMPT_COMMAND='history -a'
+export HISTTIMEFORMAT='%d.%m.%Y %H:%M:%S: '
 
 funnyPhrases() {
   hoursTime=$(date +%H)
@@ -233,6 +236,7 @@ funnyPhrases "Morkovka21Vek"
 echo -e "\033[00m"
 
 alias buffer_help="echo \"xclip -sel c < <filename>\""
+alias caesiumclt="/home/morkovka21vek/Documents/programs/caesiumclt"
 
 if [[ "$TERM" == "linux" ]]; then
   echo -e -n "\033[?6c";
