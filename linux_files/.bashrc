@@ -95,6 +95,15 @@ unset force_color_prompt
 #  fi
 #}
 
+export HISTIGNORE="shutdown*:cd *:cd:ls *:ls:cl:clear:exit:ps:history*"
+export HISTCONTROL=ignoreboth:erasedups
+if [[ -n "$PROMPT_COMMAND" ]]; then
+  PROMPT_COMMAND="$PROMPT_COMMAND; history -a"
+else
+  PROMPT_COMMAND="history -a"
+fi
+export HISTTIMEFORMAT='%d.%m.%Y %H:%M:%S: '
+
 on_enter_window_width() {
     relative_path="${PWD/#$HOME/\~}"
   
@@ -124,7 +133,11 @@ on_enter_window_width() {
 }
 
 on_enter_window_width
-PROMPT_COMMAND="on_enter_window_width"
+if [[ -n "$PROMPT_COMMAND" ]]; then
+  PROMPT_COMMAND="$PROMPT_COMMAND; on_enter_window_width"
+else
+  PROMPT_COMMAND="on_enter_window_width"
+fi
 #trap 'resize_window' SIGWINCH
 
 # If this is an xterm set the title to user@host:dir
@@ -135,6 +148,65 @@ xterm*|rxvt*)
 *)
     ;;
 esac
+
+#function format_time {
+#    local time_ms=$1
+#    local min_length=${2:-9} # 7
+#    local time_sec=$(echo "scale=2; $time_ms / 1000" | bc)
+#
+#    #format_number() {
+#    #    local num=$1
+#    #    num=$(echo "$num" | sed 's/^\./0./')
+#    #    if [[ -z "$num" || ! "$num" =~ ^-?[0-9]+(\.[0-9]+)?$ ]]; then
+#    #       echo "Недопустимое число: $num"
+#    #       return 1
+#    #    fi
+#    #    echo "Форматируемое число: $num"
+#    #    printf "%.4g" "$num"
+#    #}
+#
+#    if (( $(echo "$time_sec < 60" | bc -l) )); then
+#        echo -e "${time_sec}\033[1;33ms\033[0m"
+#        #time_sec=$(format_number "$time_sec")
+#        #printf "[%s\033[1;33ms\033[0m]%*s\n" "$time_sec" $((min_length - ${#time_sec} - 3)) ""
+#    elif (( $(echo "$time_sec < 3600" | bc -l) )); then
+#        local minutes=$(echo "scale=2; $time_sec / 60" | bc)
+#        echo -e "${minutes}\033[1;33mm\033[0m"
+#    else
+#        local hours=$(echo "scale=2; $time_sec / 3600" | bc)
+#        echo -e "${hours}\033[1;33mh\033[0m"
+#    fi
+#}
+#
+#function timer_start {
+#  if [ -z "$timer" ]; then
+#    timer=${timer:-$(date +%s%3N)}
+#  fi;
+#}
+#
+#function timer_stop {
+#  if [ -n "$timer" ]; then
+#    local now=$(date +%s%3N)
+#    local time_elapsed=$((now - timer))
+#    timer_show=$(format_time $time_elapsed)
+#    unset timer
+#  else
+#    timer_show=""
+#  fi
+#  #export PS1="[$timer_show]$PS1"
+#}
+#
+#if [[ $- == *i* ]]; then
+#    trap 'timer_start' DEBUG
+#fi
+#
+#if [[ -n "$PROMPT_COMMAND" ]]; then
+#  PROMPT_COMMAND="$PROMPT_COMMAND; timer_stop"
+#else
+#  PROMPT_COMMAND="timer_stop"
+#fi
+
+
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -180,23 +252,16 @@ if ! shopt -oq posix; then
   fi
 fi
 
-mkcdir ()
-{
+
+mkcdir() {
     mkdir -p -- "$1" &&
     cd -P -- "$1"
 }
-cl ()
-{
-  clear
-  echo -e -n "\033[0;32m"
-  funnyPhrases "Morkovka21Vek"
-  echo -e "\033[00m"
-}
 
-export HISTIGNORE="shutdown*:cd *:cd:ls *:ls:cl:clear:exit:ps:history*"
-export HISTCONTROL=ignoreboth:erasedups
-export PROMPT_COMMAND='history -a'
-export HISTTIMEFORMAT='%d.%m.%Y %H:%M:%S: '
+alias mkcdir="mkcdir $@"
+
+alias cl="clear && echo -e -n \"\033[0;32m\" && funnyPhrases \"Morkovka21Vek\" && echo -e \"\033[00m\""
+
 
 funnyPhrases() {
   hoursTime=$(date +%H)
@@ -236,6 +301,8 @@ funnyPhrases "Morkovka21Vek"
 echo -e "\033[00m"
 
 alias buffer_help="echo \"xclip -sel c < <filename>\""
+alias tar_unzip_help="echo \"tar -xvzf <filename> [-C <dir name>]\""
+
 alias caesiumclt="/home/morkovka21vek/Documents/programs/caesiumclt"
 
 if [[ "$TERM" == "linux" ]]; then
@@ -243,3 +310,4 @@ if [[ "$TERM" == "linux" ]]; then
 fi
 
 #echo -e '\033[?17;7;113c'
+unset timer
