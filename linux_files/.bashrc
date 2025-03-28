@@ -311,3 +311,5 @@ fi
 
 #echo -e '\033[?17;7;113c'
 unset timer
+
+source '/home/morkovka21vek/.bash_completions/ebenezer.sh'
