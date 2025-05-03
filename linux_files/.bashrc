@@ -56,53 +56,15 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-#tput cols 
-##if [ "$color_prompt" = yes ]; then
-##    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-##    if [ $((`tput cols` - $(echo -n "$relative_path" | wc -c) - $(echo -n "$(whoami)" | wc -c))) -le 90 ]; then
-##      PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\$ '
-##    else
-##      PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-##    fi
-##else
-##    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-##fi
-##PS2="\033[0;32mСомневаюсь, что ты хотел это, но вот\033[0m \033[0;34m>\033[0m "
-
 unset force_color_prompt
 
-#on_enter_window_width() {
-#    relative_path="${PWD/#$HOME/\~}"
-#  
-#  if [ "$color_prompt" = yes ]; then
-#      if [ $((`tput cols` - $(echo -n "$relative_path" | wc -c) - $(echo -n "$(whoami)" | wc -c))) -le 90 ]; then
-#        PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\$ '
-#      else
-#        PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-#      fi
-#  else
-#      if [ $((`tput cols` - $(echo -n "$relative_path" | wc -c) - $(echo -n "$(whoami)" | wc -c))) -le 90 ]; then
-#        PS1='${debian_chroot:+($debian_chroot)}\u@\h:\W\$ '
-#      else
-#        PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-#      fi
-#  fi
-#
-#  if [ $((`tput cols` - $(echo -n "$relative_path" | wc -c) - $(echo -n "$(whoami)" | wc -c))) -le 90 ]; then
-#    PS2=" \033[0;34m>\033[0m "
-#  else
-#    PS2="\033[0;32mСомневаюсь, что ты хотел это, но вот\033[0m \033[0;34m>\033[0m "
-#  fi
-#}
-
-export HISTIGNORE="shutdown*:cd *:cd:ls *:ls:cl:clear:exit:ps:history*"
+export HISTIGNORE="shutdown*:cd *:cd:ls *:ls:cl:clear:exit:ps:history*:.."
 export HISTCONTROL=ignoreboth:erasedups
 if [[ -n "$PROMPT_COMMAND" ]]; then
   PROMPT_COMMAND="$PROMPT_COMMAND; history -a"
 else
   PROMPT_COMMAND="history -a"
 fi
-export HISTTIMEFORMAT='%d.%m.%Y %H:%M:%S: '
 
 on_enter_window_width() {
     relative_path="${PWD/#$HOME/\~}"
@@ -149,64 +111,6 @@ xterm*|rxvt*)
     ;;
 esac
 
-#function format_time {
-#    local time_ms=$1
-#    local min_length=${2:-9} # 7
-#    local time_sec=$(echo "scale=2; $time_ms / 1000" | bc)
-#
-#    #format_number() {
-#    #    local num=$1
-#    #    num=$(echo "$num" | sed 's/^\./0./')
-#    #    if [[ -z "$num" || ! "$num" =~ ^-?[0-9]+(\.[0-9]+)?$ ]]; then
-#    #       echo "Недопустимое число: $num"
-#    #       return 1
-#    #    fi
-#    #    echo "Форматируемое число: $num"
-#    #    printf "%.4g" "$num"
-#    #}
-#
-#    if (( $(echo "$time_sec < 60" | bc -l) )); then
-#        echo -e "${time_sec}\033[1;33ms\033[0m"
-#        #time_sec=$(format_number "$time_sec")
-#        #printf "[%s\033[1;33ms\033[0m]%*s\n" "$time_sec" $((min_length - ${#time_sec} - 3)) ""
-#    elif (( $(echo "$time_sec < 3600" | bc -l) )); then
-#        local minutes=$(echo "scale=2; $time_sec / 60" | bc)
-#        echo -e "${minutes}\033[1;33mm\033[0m"
-#    else
-#        local hours=$(echo "scale=2; $time_sec / 3600" | bc)
-#        echo -e "${hours}\033[1;33mh\033[0m"
-#    fi
-#}
-#
-#function timer_start {
-#  if [ -z "$timer" ]; then
-#    timer=${timer:-$(date +%s%3N)}
-#  fi;
-#}
-#
-#function timer_stop {
-#  if [ -n "$timer" ]; then
-#    local now=$(date +%s%3N)
-#    local time_elapsed=$((now - timer))
-#    timer_show=$(format_time $time_elapsed)
-#    unset timer
-#  else
-#    timer_show=""
-#  fi
-#  #export PS1="[$timer_show]$PS1"
-#}
-#
-#if [[ $- == *i* ]]; then
-#    trap 'timer_start' DEBUG
-#fi
-#
-#if [[ -n "$PROMPT_COMMAND" ]]; then
-#  PROMPT_COMMAND="$PROMPT_COMMAND; timer_stop"
-#else
-#  PROMPT_COMMAND="timer_stop"
-#fi
-
-
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -214,6 +118,8 @@ if [ -x /usr/bin/dircolors ]; then
     alias ls='ls --color=auto'
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
+
+    alias diff='diff --color=auto'
 
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
@@ -227,6 +133,22 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+
+alias apt='sudo apt-fast'
+alias ..='cd ..'
+alias update_upgrade='sudo apt-fast update && sudo apt-fast upgrade'
+alias h='history'
+alias hgrep='history | grep'
+alias higrep='history | grep -i'
+alias ff='find / -type f -name'
+alias fd='find / -type d -name'
+
+# Подтверждение при перезаписи файлов
+alias mv='mv -i'
+alias cp='cp -i'
+alias ln='ln -i'
+
+alias fastping='ping -c 100 -s 1 -i 0.01'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -295,21 +217,18 @@ funnyPhrases() {
 }
 
 #echo -e '\e]8;;http://example.com\e\\This is a link\e]8;;\e\\'
-#echo -e "\033[1;32mЗдравструйте, $USER!\nСегодня $(date)\n\033[0;32m"
 echo -e "\033[1;32mЗдравструйте, $USER!\n\033[0;32m"
 funnyPhrases "Morkovka21Vek"
-echo -e "\033[00m"
+echo -e "\033[0m"
 
 alias buffer_help="echo \"xclip -sel c < <filename>\""
 alias tar_unzip_help="echo \"tar -xvzf <filename> [-C <dir name>]\""
-
-alias caesiumclt="/home/morkovka21vek/Documents/programs/caesiumclt"
 
 if [[ "$TERM" == "linux" ]]; then
   echo -e -n "\033[?6c";
 fi
 
 #echo -e '\033[?17;7;113c'
-unset timer
 
-source '/home/morkovka21vek/.bash_completions/ebenezer.sh'
+#export SSH_ASKPASS="/usr/bin/ssh-askpass-gnome"
+#export SSH_ASKPASS="/usr/bin/ksshaskpass"  # или /usr/bin/ssh-askpass-gnome

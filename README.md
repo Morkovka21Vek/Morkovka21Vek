@@ -5,11 +5,11 @@
 <img src="https://github.com/blackcater/blackcater/raw/main/images/Hi.gif" height="32"/></h2>
 
 <h3 align="center">I love programming and playing, but I'm just learning.<br> I'm from Russia.
-<img src="https://github.com/Morkovka21Vek/Morkovka21Vek/blob/main/russia-flag.gif?raw=true" height="16"/>
+<img src="imgs/russia-flag.gif?raw=true" height="16"/>
 <br>My website: <a href="https://morkovka21vek.github.io/">Morkovka21Vek.github.io</a></h3> 
 
 <h4 align="center">Люблю программировать и играть, но я только учусь.<br> Я из России. 
-<img src="https://github.com/Morkovka21Vek/Morkovka21Vek/blob/main/russia-flag.gif?raw=true" height="16"/>
+<img src="imgs/russia-flag.gif?raw=true" height="16"/>
 <br>Мой сайт: <a href="https://morkovka21vek.github.io/ru">Morkovka21Vek.github.io</a></h4>
 
 <!-- [![trophy](https://github-profile-trophy.vercel.app/?username=Morkovka21Vek)](https://github.com/Morkovka21Vek) -->
