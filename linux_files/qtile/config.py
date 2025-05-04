@@ -286,8 +286,12 @@ screens = [
                     foreground="#d8a406",
                     padding=5
                 ),
-                #Wttr
-                # widget.StatusNotifier(),
+                widget.Wttr(
+                    format="%c %t",
+                    hide_crash = True,
+                    lang = "ru",
+                    location = {"Moscow": "Москва"},
+                ),
                 widget.Volume(
                     unmute_format='🔈{volume}%',
                     mute_format='🔇',
